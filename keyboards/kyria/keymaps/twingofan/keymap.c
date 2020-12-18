@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
 * |  LSHFT |   Z  |   X  |   C  |   V  |   B  | DEL  |      |  |      | ESC  |   N  |   M  |  ,/< |  ./> |  //? |  |/\   |
 * `----------------------+------+------+------+------+ NAV  |  | FUNC +------+------+------+------+----------------------'
-*                        | GUI  | ALT  | CTRL | SPC  | TAB  |  | ENTR | BSP  | RSHFT| ALT  | HOME |
+*                        | ALT  | GUI  | CTRL | SPC  | TAB  |  | ENTR | BSP  | RSHFT| ALT  | HOME |
 *                        |      |      |      |      |      |  |      |      |      |      |  END |
 *                        `----------------------------------'  `----------------------------------'
 */
@@ -48,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_MPLY, KC_Q, KC_W, KC_E, KC_R, KC_T,                                                                KC_Y, KC_U, KC_I, KC_O, KC_P, TD(TD_BRACKETS),
        KC_LCTL, KC_A, KC_S, KC_D, KC_F, KC_G,                                                                KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,
        KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_DEL, _______,                              _______, KC_ESC, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_PIPE,
-                           KC_LGUI, KC_LALT, KC_LCTL, KC_SPC, LT(_NAV,KC_TAB), LT(_FUNC,KC_ENT), KC_BSPC, KC_RSFT, KC_RALT,  _______
+                           KC_LALT, KC_LGUI, KC_LCTL, KC_SPC, LT(_NAV,KC_TAB), LT(_FUNC,KC_ENT), KC_BSPC, KC_RSFT, KC_RALT,  _______
      ),
 
 /*
@@ -105,9 +105,9 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         }
     } else if (index == 1) { /* Second encoder */
         if (clockwise) {
-            tap_code(KC_PGDN);
-        } else {
             tap_code(KC_PGUP);
+        } else {
+            tap_code(KC_PGDN);
         }
     }
 }
