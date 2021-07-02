@@ -29,6 +29,15 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_BRACKETS] = ACTION_TAP_DANCE_DOUBLE(KC_LBRACKET, KC_RBRACKET),
 };
 
+enum custom_keycodes {
+    OLED_TOGGLE = SAFE_RANGE
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    case OLED_TOGGLE:
+        if (record->event.pressed) {
+
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* QWERTY base layer
@@ -170,10 +179,12 @@ static void render_status(void) {
 }
 
 void oled_task_user(void) {
-    if (is_keyboard_master()) {
-        render_status(); // Renders the current keyboard state (layer, lock, caps, scroll, etc)
-    } else {
-        render_kyria_logo();
+    if (oled_toggle()) {
+        if (is_keyboard_master()) {
+            render_status(); // Renders the current keyboard state (layer, lock, caps, scroll, etc)
+        } else {
+            render_kyria_logo();
+        }
     }
 }
 #endif
